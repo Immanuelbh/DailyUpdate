@@ -1,4 +1,4 @@
-package com.ijbh.dailyupdate.fragments;
+package com.ijbh.dailyupdate.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ijbh.dailyupdate.R;
-import com.ijbh.dailyupdate.articles.Article;
-import com.ijbh.dailyupdate.articles.ArticleAdapter;
+import com.ijbh.dailyupdate.models.Article;
+import com.ijbh.dailyupdate.adapters.ArticleAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

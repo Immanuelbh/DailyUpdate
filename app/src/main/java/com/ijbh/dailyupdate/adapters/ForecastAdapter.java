@@ -1,16 +1,16 @@
-package com.ijbh.dailyupdate.forecasts;
+package com.ijbh.dailyupdate.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ijbh.dailyupdate.R;
+import com.ijbh.dailyupdate.models.Forecast;
 
 import java.util.List;
 

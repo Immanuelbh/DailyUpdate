@@ -1,4 +1,4 @@
-package com.ijbh.dailyupdate.forecasts;
+package com.ijbh.dailyupdate.models;
 
 import android.net.Uri;
 

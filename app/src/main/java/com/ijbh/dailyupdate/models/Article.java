@@ -1,4 +1,4 @@
-package com.ijbh.dailyupdate.articles;
+package com.ijbh.dailyupdate.models;
 
 public class Article {
     private String title;

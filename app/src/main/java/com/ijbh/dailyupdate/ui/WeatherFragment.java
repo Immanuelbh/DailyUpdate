@@ -1,11 +1,10 @@
-package com.ijbh.dailyupdate.fragments;
+package com.ijbh.dailyupdate.ui;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,13 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ijbh.dailyupdate.R;
-import com.ijbh.dailyupdate.forecasts.Forecast;
-import com.ijbh.dailyupdate.forecasts.ForecastAdapter;
+import com.ijbh.dailyupdate.models.Forecast;
+import com.ijbh.dailyupdate.adapters.ForecastAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static androidx.recyclerview.widget.RecyclerView.HORIZONTAL;
 
 public class WeatherFragment extends Fragment {
     final String TAG = "WeatherFragment";

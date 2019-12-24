@@ -1,12 +1,11 @@
-package com.ijbh.dailyupdate;
+package com.ijbh.dailyupdate.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.ijbh.dailyupdate.fragments.NewsFragment;
-import com.ijbh.dailyupdate.fragments.WeatherFragment;
+import com.ijbh.dailyupdate.R;
 
 public class MainActivity extends AppCompatActivity implements NewsFragment.OnNewsFragmentListener{
 

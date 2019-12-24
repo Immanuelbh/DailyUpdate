@@ -1,4 +1,4 @@
-package com.ijbh.dailyupdate.articles;
+package com.ijbh.dailyupdate.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ijbh.dailyupdate.R;
+import com.ijbh.dailyupdate.models.Article;
 
 import java.util.List;
 
