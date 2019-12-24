@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="10dp"
+    app:elevation="4dp"
+    app:cardCornerRadius="8dp"
+    app:cardBackgroundColor="#E9FBD8FF" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_compass"
+            android:id="@+id/forecast_icon_iv"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:text="18°"
+                android:id="@+id/forecast_degrees_tv"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/forecast_title_tv"
+                android:textSize="18sp"
+                android:text="Holon"
+
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+
+
+</androidx.cardview.widget.CardView>

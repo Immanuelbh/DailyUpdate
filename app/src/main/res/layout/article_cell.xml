@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="10dp"
+    app:elevation="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#E9FCEDE3"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_tv"
+            android:textSize="22sp"
+            android:text="Article Title"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/desc_tv"
+            android:textSize="14sp"
+            android:text="This is a sample text, used for filling in for the actual text."
+            android:layout_marginTop="5dp"
+            />
+    </LinearLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>
