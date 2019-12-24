@@ -1,7 +1,12 @@
 package com.ijbh.dailyupdate.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Article {
+    @SerializedName(value="title")
     private String title;
+
+    @SerializedName(value="description")
     private String desc;
 
     public Article(String title, String desc) {
