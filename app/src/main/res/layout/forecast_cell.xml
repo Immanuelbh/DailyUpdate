@@ -14,15 +14,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:id="@+id/container"
         >
 
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_compass"
-            android:id="@+id/forecast_icon_iv"
-            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/top_ll">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_menu_compass"
+                android:id="@+id/forecast_icon_iv"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:text="18°"
+                    android:id="@+id/forecast_max_degrees_tv"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="18°"
+                    android:id="@+id/forecast_min_degrees_tv"
+                    android:layout_gravity="center"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/day_of_the_week_tv"
+            android:text="Sunday"
             android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             />
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,14 +70,9 @@
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:visibility="gone"
             >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="18°"
-                android:id="@+id/forecast_degrees_tv"
-                />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

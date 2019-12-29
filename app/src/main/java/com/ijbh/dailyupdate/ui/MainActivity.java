@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.ijbh.dailyupdate.R;
 
-public class MainActivity extends AppCompatActivity implements NewsFragment.OnNewsFragmentListener{
+public class MainActivity extends AppCompatActivity implements NewsFragment.OnNewsFragmentListener, WeatherFragment.OnWeatherFragmentListener{
 
     final String NEWS_FRAGMENT_TAG = "news_fragment";
     final String WEATHER_FRAGMENT_TAG = "weather_fragment";

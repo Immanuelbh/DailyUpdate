@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.ijbh.dailyupdate.R;
 import com.ijbh.dailyupdate.models.Article;
 
@@ -19,8 +21,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     private Context aCtx;
     private List<Article> articles;
     private ArticleListener listener;
-
-    //final String ARTICLE_IMAGE_URL = "";
+    //final private String ARTICLE_IMAGE_URL = ""
 
     interface ArticleListener{
         void onArticleClicked(int position);
@@ -40,12 +41,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     }
 
     public class ArticleViewHolder extends RecyclerView.ViewHolder{
+        ImageView imageIv;
         TextView titleTv;
         TextView descTv;
+
 
         public ArticleViewHolder(View itemView){
             super(itemView);
 
+            imageIv = itemView.findViewById(R.id.article_img_iv);
             titleTv = itemView.findViewById(R.id.title_tv);
             descTv = itemView.findViewById(R.id.desc_tv);
 
@@ -66,6 +70,17 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         holder.titleTv.setText(article.getTitle());
         holder.descTv.setText(article.getDesc());
         //TODO add glide for article image
+        if(article.getImageUrl() == null){
+            Glide.with(aCtx)
+                    .load(R.drawable.no_image_available_comp)
+                    .into(holder.imageIv);
+        }
+        else{
+            Glide.with(aCtx)
+                    .load(article.getImageUrl()+"")
+                    .into(holder.imageIv);
+        }
+
     }
 
     @Override

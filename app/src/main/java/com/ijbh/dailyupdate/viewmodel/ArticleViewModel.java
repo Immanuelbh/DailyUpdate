@@ -18,6 +18,7 @@ import retrofit2.Response;
 
 public class ArticleViewModel extends ViewModel {
 
+    private static final String TAG = "CHECK_URL";
     private MutableLiveData<List<Article>> articleList;
 
     public MutableLiveData<List<Article>> getArticleList() {
@@ -29,9 +30,10 @@ public class ArticleViewModel extends ViewModel {
     }
 
     private void loadArticles() {
-        Api api = ApiUtil.getRetrofitApi();
+        Api api = ApiUtil.getRetrofitApi("news");
 
-        Call<ArrayList<Article>> call = api.getArticles("d0aa26443881471ab9a2f2f49298fc28");
+        Call<ArrayList<Article>> call = api.getArticles("us","d0aa26443881471ab9a2f2f49298fc28");
+        Log.d(TAG, "onResponse: ConfigurationListener::"+call.request().url());
 
         call.enqueue(new Callback<ArrayList<Article>>() {
             @Override
@@ -42,6 +44,7 @@ public class ArticleViewModel extends ViewModel {
             @Override
             public void onFailure(Call<ArrayList<Article>> call, Throwable t) {
                 Log.d("Error", "Failed to create list");
+                t.printStackTrace();
             }
         });
 

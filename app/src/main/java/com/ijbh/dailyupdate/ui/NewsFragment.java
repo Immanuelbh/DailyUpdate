@@ -2,6 +2,7 @@ package com.ijbh.dailyupdate.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,10 @@ public class NewsFragment extends Fragment {
             public void onChanged(List<Article> articles) {
                 adapter = new ArticleAdapter(NewsFragment.this.getContext(), articles);
                 recyclerView.setAdapter(adapter);
+
+
+                if(articles == null)
+                    Log.e("err","articles list is empty");
             }
         });
 

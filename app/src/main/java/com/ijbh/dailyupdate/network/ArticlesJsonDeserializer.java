@@ -24,12 +24,13 @@ public class ArticlesJsonDeserializer implements JsonDeserializer {
         try{
             JsonObject jsonObject = json.getAsJsonObject();
             JsonArray articlesJsonArray = jsonObject.getAsJsonArray("articles");
+            articles = new ArrayList<>(articlesJsonArray.size());
             for (int i = 0; i < articlesJsonArray.size(); i++) {
                 Article dematerialized = context.deserialize(articlesJsonArray.get(i), Article.class);
                 articles.add(dematerialized);
             }
         }catch (JsonParseException jpe){
-            Log.e(TAG, String.format("Could not deserialize Movie element: %s", json.toString()));
+            Log.e(TAG, String.format("Could not deserialize Article element: %s", json.toString()));
         }
 
         return articles;

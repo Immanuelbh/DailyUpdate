@@ -18,12 +18,21 @@
         android:orientation="vertical"
 
         >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="600px"
+            android:id="@+id/article_img_iv"
+
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title_tv"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="Article Title"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
             />
 
         <TextView
@@ -33,6 +42,8 @@
             android:textSize="14sp"
             android:text="This is a sample text, used for filling in for the actual text."
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             />
     </LinearLayout>
 

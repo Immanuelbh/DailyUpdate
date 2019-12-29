@@ -9,9 +9,15 @@ public class Article {
     @SerializedName(value="description")
     private String desc;
 
-    public Article(String title, String desc) {
+    @SerializedName(value = "urlToImage")
+    private String imageUrl;
+
+
+
+    public Article(String title, String desc, String imageUrl) {
         this.title = title;
         this.desc = desc;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -28,5 +34,13 @@ public class Article {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
