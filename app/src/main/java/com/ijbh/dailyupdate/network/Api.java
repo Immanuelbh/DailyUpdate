@@ -17,8 +17,8 @@ public interface Api{
                                          @Query("apiKey") String apiKey);
 
     @GET(".")
-    Call<ArrayList<Forecast>> getForecasts(@Query("lon") String lon,
-                                           @Query("lat") String lat,
+    Call<ArrayList<Forecast>> getForecasts(@Query("lat") String lat,
+                                           @Query("lon") String lon,
                                            @Query("days") String days,
                                            @Query("key") String key);
 

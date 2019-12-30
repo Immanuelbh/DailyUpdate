@@ -24,12 +24,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private Context fCtx;
     private List<Forecast> forecasts;
     private ForecastListener listener;
+    private String latLon = null;
 
     interface ForecastListener{
         void onForecastClicked(int position);
     }
 
-    public void setListener(ForecastListener listener){
+    public void setForecastListener(ForecastListener listener){
         this.listener = listener;
     }
 

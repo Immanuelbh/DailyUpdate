@@ -22,19 +22,19 @@ public class ForecastViewModel extends ViewModel {
     private static final String TAG = "CHECK_URL";
     private MutableLiveData<List<Forecast>> forecastList;
 
-    public MutableLiveData<List<Forecast>> getForecastList() {
+    public MutableLiveData<List<Forecast>> getForecastList(double lat, double lon) {
         if(forecastList == null){
             forecastList = new MutableLiveData<>();
-            loadArticles();
+            loadForecasts(lat, lon);
         }
         return forecastList;
     }
 
-    private void loadArticles() {
+    private void loadForecasts(double lat, double lon) {
         Api api = ApiUtil.getRetrofitApi("weather");
 
         //TODO add dynamic lat and lon values
-        Call<ArrayList<Forecast>> call = api.getForecasts("34.855499", "32.109333", "10", "360f7db3702548598ed50ec3d97b4015");
+        Call<ArrayList<Forecast>> call = api.getForecasts(String.valueOf(lat), String.valueOf(lon), "10", "360f7db3702548598ed50ec3d97b4015");
         Log.d(TAG, "onResponse: ConfigurationListener::"+call.request().url()); //for debugging
 
         call.enqueue(new Callback<ArrayList<Forecast>>() {

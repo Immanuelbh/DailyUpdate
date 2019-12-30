@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.news_container, newsFragment, NEWS_FRAGMENT_TAG);
         transaction.add(R.id.weather_container, weatherFragment, WEATHER_FRAGMENT_TAG);
-        transaction.addToBackStack(null);
+        //transaction.addToBackStack(null);
         transaction.commit();
 
 
