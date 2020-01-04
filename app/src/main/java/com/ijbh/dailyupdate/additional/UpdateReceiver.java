@@ -49,6 +49,8 @@ public class UpdateReceiver extends BroadcastReceiver {
         manager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
 
+
+
         //pending intents
         //pending intent for article notification
         Intent articleIntent = new Intent(context, ArticleActivity.class);
@@ -112,16 +114,33 @@ public class UpdateReceiver extends BroadcastReceiver {
         Toast.makeText(context, "interval: " + interval, Toast.LENGTH_SHORT).show();
 
 
-        alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if(intent.getBooleanExtra("sendNotif", true) == false)
+            cancelNotifications();
+        else{
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.SECOND, interval);
+            alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-        Intent updateIntent = new Intent(context, UpdateReceiver.class);
-        PendingIntent broadcast = PendingIntent.getBroadcast(context, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.SECOND, interval);
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
+            Intent updateIntent = new Intent(context, UpdateReceiver.class);
+            PendingIntent broadcast = PendingIntent.getBroadcast(context, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
+        }
+
+    }
+
+    private void cancelNotifications() {
+        try {
+            manager.cancel(NOTIF_NEW_ARTICLE_ID);
+        }catch (NullPointerException npe1){}
+        try {
+            manager.cancel(NOTIF_NEW_WEATHER_ID);
+        }catch (NullPointerException npe1){}
+        try {
+            manager.cancel(NOTIF_LATEST_NEWS_ID);
+        }catch (NullPointerException npe1){}
     }
 
     private void fireNotification(NotificationCompat.Builder[] notifications) {
