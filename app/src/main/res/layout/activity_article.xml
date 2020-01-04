@@ -4,13 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ArticleActivity">
+    android:orientation="vertical"
+    tools:context=".ui.ArticleActivity"
+    android:background="#E9FCEDE3"
+    >
 
-    <Button
+    <ImageView
+        android:id="@+id/article_layout_img_iv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="stop"
-        android:id="@+id/stop_btn"
+        android:src="@mipmap/ic_launcher"
         />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/article_title_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Article Title"
+                android:gravity="center"
+                android:textSize="18sp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="#FCEBE0"
+                >
+                <TextView
+                    android:id="@+id/article_author_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="author"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/article_date_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="date"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/article_content_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="The article contents"
+                android:textSize="14sp"
+                android:background="#DFFDF3EC"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Read more at:"
+                android:textSize="12sp"
+                android:layout_marginTop="10dp"
+                />
+            <TextView
+                android:id="@+id/article_source_tv"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="source"
+                android:textSize="12sp"
+                android:textColor="#2167F3"
+                android:layout_marginTop="4dp"
+                />
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+
 
 </LinearLayout>

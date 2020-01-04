@@ -34,9 +34,14 @@ public class WeatherFragment extends Fragment {
     final private String TAG = "WeatherFragment";
     final private int LOC_PERMISSION = 1;
 
+    final private double DEFAULT_LAT = 32.109333; //Tel Aviv
+    final private double DEFAULT_LON = 34.855499;
+
+    private double lat = DEFAULT_LAT;
+    private double lon = DEFAULT_LON;
+
+    RecyclerView recyclerView;
     ForecastAdapter adapter;
-    private double lat = 32.138194;
-    private double lon = 34.8368449;
 
     //interface
     public interface OnWeatherFragmentListener{
@@ -68,7 +73,7 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.forecast_fragment, container, false);
 
-        final RecyclerView recyclerView = rootView.findViewById(R.id.forecast_recycler);
+        recyclerView = rootView.findViewById(R.id.forecast_recycler);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -88,6 +93,10 @@ public class WeatherFragment extends Fragment {
         }
 
 
+        return rootView;
+    }
+
+    private void updateWeatherList(double lat, double lon) {
         //setting up the model
         ForecastViewModel model = ViewModelProviders.of(this).get(ForecastViewModel.class);
 
@@ -96,13 +105,10 @@ public class WeatherFragment extends Fragment {
             public void onChanged(List<Forecast> forecasts) {
 
                 adapter = new ForecastAdapter(WeatherFragment.this.getContext(), forecasts);
+
                 recyclerView.setAdapter(adapter);
             }
         });
-
-
-
-        return rootView;
     }
 
     private void getLocationUpdates() {
@@ -112,6 +118,10 @@ public class WeatherFragment extends Fragment {
                 lat = location.getLatitude();
                 lon = location.getLongitude();
                 Log.d(TAG, "lat = " + lat + " | lon = " + lon);
+
+
+                updateWeatherList(lat, lon);
+
             }
         });
     }

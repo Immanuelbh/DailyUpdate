@@ -1,11 +1,13 @@
 package com.ijbh.dailyupdate.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,8 +72,22 @@ public class NewsFragment extends Fragment {
             @Override
             public void onChanged(List<Article> articles) {
                 adapter = new ArticleAdapter(NewsFragment.this.getContext(), articles);
-                recyclerView.setAdapter(adapter);
 
+                //not working
+                adapter.setListener(new ArticleAdapter.ArticleListener() {
+                    @Override
+                    public void onArticleClicked(int position, View view) {
+
+                        Toast.makeText(getContext(), "Article " + position, Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getContext(), ArticleActivity.class);
+                        intent.putExtra("current_article", position);
+                        startActivity(intent);
+
+                    }
+                });
+
+                recyclerView.setAdapter(adapter);
 
                 if(articles == null)
                     Log.e("err","articles list is empty");
@@ -83,10 +99,19 @@ public class NewsFragment extends Fragment {
         articlesList.add(new Article("Hello World!", "This is the first cell to be created in this project!"));
         articlesList.add(new Article("Second Test", "Second attempt at creating a cell inside a fragment."));
 
-        ArticleAdapter articleAdapter = new ArticleAdapter(articlesList);
+        ArticleAdapter articleAdapter = new ArticleAdapter();
+
+        articleAdapter.setListener(new ArticleAdapter.ArticleListener() {
+            @Override
+            public void onArticleClicked(int position) {
+                Intent intent = new Intent(getContext(), ArticleActivity.class);
+                intent.putExtra("current_article", position);
+                startActivity(intent);
+            }
+        });
 
         recyclerView.setAdapter(articleAdapter);
-        */
+*/
 
         return rootView;
     }

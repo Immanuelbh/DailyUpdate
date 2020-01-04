@@ -24,6 +24,7 @@ public class ForecastsJsonDeserializer implements JsonDeserializer {
         try{
             JsonObject jsonObject = json.getAsJsonObject();
             String city = jsonObject.get("city_name").getAsString();
+            String countryCode = jsonObject.get("country_code").getAsString();
             JsonArray forecastsJsonArray = jsonObject.getAsJsonArray("data");
             forecasts = new ArrayList<>(forecastsJsonArray.size());
             for (int i = 0; i < forecastsJsonArray.size(); i++) {
@@ -33,7 +34,9 @@ public class ForecastsJsonDeserializer implements JsonDeserializer {
                 Forecast dematerialized = context.deserialize(forecastObject, Forecast.class);
                 forecasts.add(dematerialized);
                 forecasts.get(i).setForecastTitle(city);
+                forecasts.get(i).setCountryCode(countryCode);
                 forecasts.get(i).setForecastIcon(weatherObject.get("icon").getAsString());
+                forecasts.get(i).setWeatherDesc(weatherObject.get("description").getAsString());
             }
         }catch (JsonParseException jpe){
             Log.e(TAG, String.format("Could not deserialize Forecast element: %s", json.toString()));

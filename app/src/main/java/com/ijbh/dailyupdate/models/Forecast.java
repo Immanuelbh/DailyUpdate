@@ -10,30 +10,80 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Forecast {
-    @SerializedName(value = "weather.icon")
-    private String forecastIcon;
-    //@SerializedName(value = "")
+
     private String forecastCity;
-    @SerializedName(value = "temp")
-    private String forecastDegrees;
-    @SerializedName(value = "max_temp")
-    private String forecastMaxDegrees;
-    @SerializedName(value = "min_temp")
-    private String forecastMinDegrees;
+
+    private String weatherDesc;
+    private String forecastIcon;
+
     @SerializedName(value = "valid_date")
     private String date;
+
+    @SerializedName(value = "max_temp")
+    private String forecastMaxDegrees;
+
+    @SerializedName(value = "min_temp")
+    private String forecastMinDegrees;
+
+    @SerializedName(value = "country_code")
+    private String countryCode;
+
+    @SerializedName(value = "temp")
+    private String avgTemp;
+
+    @SerializedName(value = "wind_cdir")
+    private String windDirection;
+
+    @SerializedName(value = "wind_spd")
+    private String windSpeed;
+
+    @SerializedName(value = "pop")
+    private String propOfPrecip;
+
+    @SerializedName(value = "precip")
+    private String precip;
 
 
     public Forecast(String forecastTitle, String forecastDegrees) {
         this.forecastCity = forecastTitle;
-        this.forecastDegrees = forecastDegrees;
-        //calcForecastIcon(forecastDegrees);
+        this.avgTemp = forecastDegrees;
     }
 
     public Forecast(String forecastIcon, String forecastTitle, String forecastDegrees) {
         this.forecastIcon = forecastIcon;
         this.forecastCity = forecastTitle;
-        this.forecastDegrees = forecastDegrees;
+        this.avgTemp = forecastDegrees;
+    }
+
+    public String getDayOfTheWeek(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        String day = null;
+        try {
+            Date currentDate = sdf.parse(date);
+            DateFormat dayFormat = new SimpleDateFormat("EEEE");
+            day = dayFormat.format(currentDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return day;
+
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getWeatherDesc() {
+        return weatherDesc;
+    }
+
+    public void setWeatherDesc(String weatherDesc) {
+        this.weatherDesc = weatherDesc;
     }
 
     public String getForecastIcon() {
@@ -52,14 +102,6 @@ public class Forecast {
         this.forecastCity = forecastTitle;
     }
 
-    public String getForecastDegrees() {
-        return forecastDegrees;
-    }
-
-    public void setForecastDegrees(String forecastDegrees) {
-        this.forecastDegrees = forecastDegrees;
-    }
-
     public String getForecastMaxDegrees() {
         return forecastMaxDegrees;
     }
@@ -76,18 +118,31 @@ public class Forecast {
         this.forecastMinDegrees = forecastMinDegrees;
     }
 
-    public String getDayOfTheWeek(){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        String day = null;
-        try {
-            Date currentDate = sdf.parse(date);
-            DateFormat dayFormat = new SimpleDateFormat("EEEE");
-            day = dayFormat.format(currentDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public String getForecastCity() {
+        return forecastCity;
+    }
 
-        return day;
+    public String getDate() {
+        return date;
+    }
 
+    public String getAvgTemp() {
+        return avgTemp;
+    }
+
+    public String getWindDirection() {
+        return windDirection;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public String getPropOfPrecip() {
+        return propOfPrecip;
+    }
+
+    public String getPrecip() {
+        return precip;
     }
 }

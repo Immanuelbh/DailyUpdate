@@ -22,7 +22,7 @@ import retrofit2.Response;
 public class ArticleViewModel extends ViewModel {
 
     private static final String TAG = "CHECK_URL";
-    private MutableLiveData<List<Article>> articleList;
+    private static MutableLiveData<List<Article>> articleList;
 
     public MutableLiveData<List<Article>> getArticleList() {
         if(articleList == null){
@@ -42,7 +42,7 @@ public class ArticleViewModel extends ViewModel {
             @Override
             public void onResponse(Call<ArrayList<Article>> call, Response<ArrayList<Article>> response) {
                 articleList.setValue(response.body());
-                saveArticle(response.body().get(0));
+                //saveArticle(response.body().get(0));
             }
 
             @Override
@@ -52,6 +52,15 @@ public class ArticleViewModel extends ViewModel {
             }
         });
 
+    }
+
+    public static Article getArticle(int position){
+        try{
+            return articleList.getValue().get(position);
+        }catch (IndexOutOfBoundsException e){
+            Log.d("Get Article", "The position: " + position + " is out of bounds");
+            return null;
+        }
     }
 
     private void saveArticle(Article article) {
