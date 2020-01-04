@@ -3,8 +3,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#55efc4"
-    android:id="@+id/article_notif_ll"
+    android:background="#8BC34A"
+    android:id="@+id/weather_notif_ll"
     android:paddingEnd="2dp"
     >
 
@@ -36,9 +36,10 @@
                 />
         </LinearLayout>
         <TextView
+            android:id="@+id/forecast_title_notif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Article Title"
+            android:text="Check out the weather for tomorrow!"
             android:textColor="#000000"
             android:textSize="12sp"
             />
@@ -46,7 +47,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tap to read more"
+            android:text="Tap to view the latest forecast"
             android:textSize="8sp"
             />
 

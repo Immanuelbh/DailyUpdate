@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">DailyUpdate</string>
+
+    <string-array name="interval_list_txt">
+        <item>10 seconds**</item>
+        <item>Once a minute*</item>
+        <item>Once an hour</item>
+        <item>Once a day</item>
+    </string-array>
+
+    <string-array name="interval_list_values">
+        <item>10</item>
+        <item>60</item>
+        <item>3600</item>
+        <item>86400</item>
+    </string-array>
 </resources>

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ArticleActivity"></activity>
+        <activity android:name=".ui.ForecastActivity"></activity>
+        <activity android:name=".ui.ArticleActivity" />
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".additional.SettingsActivity"/>
+
         <receiver android:name=".additional.UpdateReceiver">
             <intent-filter>
-                <action android:name="com.ijbh.action.DISPLAY_NOTIFICATION"/>
+                <action android:name="com.ijbh.action.DISPLAY_NOTIFICATION" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".ui.ArticleActivity" />
     </application>
 
 </manifest>

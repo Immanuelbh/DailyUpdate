@@ -35,8 +35,8 @@ public class WeatherFragment extends Fragment {
     final private int LOC_PERMISSION = 1;
 
     ForecastAdapter adapter;
-    private double lat;
-    private double lon;
+    private double lat = 32.138194;
+    private double lon = 34.8368449;
 
     //interface
     public interface OnWeatherFragmentListener{

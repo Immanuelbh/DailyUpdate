@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="General Preferences"
+        >
+        <PreferenceScreen
+            android:title="Notifications"
+            android:icon="@mipmap/ic_launcher"
+            >
+            <CheckBoxPreference
+                android:key="preference_notifications"
+                android:title="Receive notifications"
+                android:defaultValue="true"
+                />
+
+            <ListPreference
+                android:key="preferences_notification_interval"
+                android:title="Notification Interval"
+                android:entryValues="@array/interval_list_values"
+                android:entries="@array/interval_list_txt"
+                android:defaultValue="60"
+                />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="News"
+            android:icon="@mipmap/ic_launcher_round"
+            >
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:title="Weather"
+            android:icon="@mipmap/ic_launcher_round"
+            >
+
+        </PreferenceScreen>
+
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

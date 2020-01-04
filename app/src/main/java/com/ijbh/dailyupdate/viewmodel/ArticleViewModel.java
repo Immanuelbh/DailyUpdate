@@ -1,10 +1,13 @@
 package com.ijbh.dailyupdate.viewmodel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ijbh.dailyupdate.R;
 import com.ijbh.dailyupdate.models.Article;
 import com.ijbh.dailyupdate.network.Api;
 import com.ijbh.dailyupdate.network.ApiUtil;
@@ -39,6 +42,7 @@ public class ArticleViewModel extends ViewModel {
             @Override
             public void onResponse(Call<ArrayList<Article>> call, Response<ArrayList<Article>> response) {
                 articleList.setValue(response.body());
+                saveArticle(response.body().get(0));
             }
 
             @Override
@@ -48,5 +52,16 @@ public class ArticleViewModel extends ViewModel {
             }
         });
 
+    }
+
+    private void saveArticle(Article article) {
+        //TODO: save the latest article and load it in the notification
+        /*
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(getString(R.string.saved_high_score_key), newHighScore);
+        editor.commit();
+
+         */
     }
 }
