@@ -3,6 +3,7 @@ package com.ijbh.dailyupdate.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,8 @@ public class ArticleActivity extends Activity {
             articleDateTv.setText(article.getPublished());
 
             String lang = Locale.getDefault().getCountry();
-            if(lang.equals("us")){
+            Log.d("language check", lang);
+            if(lang.equals("US") && article.getContent() != null){
                 articleContentTv.setText(article.getContent());
 
             }

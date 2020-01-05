@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.ArticleActivity"
-    android:background="#E9FCEDE3"
+    android:layout_width="match_parent"
+    android:background="@color/blue1"
     >
 
-    <ImageView
-        android:id="@+id/article_layout_img_iv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:orientation="vertical"
+        tools:context=".ui.ArticleActivity"
         >
+
+        <ImageView
+            android:id="@+id/article_layout_img_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:id="@+id/article_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Article Title"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:padding="8dp"
+            />
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="20dp"
             >
 
-            <TextView
-                android:id="@+id/article_title_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Article Title"
-                android:gravity="center"
-                android:textSize="18sp"
-                />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="#FCEBE0"
+                android:background="@color/blue1d"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
                 >
                 <TextView
                     android:id="@+id/article_author_tv"
@@ -68,8 +76,8 @@
                 android:layout_height="wrap_content"
                 android:text="The article contents"
                 android:textSize="14sp"
-                android:background="#DFFDF3EC"
-
+                android:background="@color/blue1l"
+                android:padding="5dp"
                 />
 
             <TextView
@@ -93,11 +101,10 @@
                 />
         </LinearLayout>
 
-    </ScrollView>
 
 
 
 
 
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

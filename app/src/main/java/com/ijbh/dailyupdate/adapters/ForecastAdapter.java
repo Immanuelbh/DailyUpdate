@@ -80,7 +80,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         fvh.containerRl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(fCtx, "Forecast num: " + String.valueOf(fvh.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(fCtx, "Forecast num: " + String.valueOf(fvh.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(parent.getContext(), ForecastActivity.class);
                 intent.putExtra("current_forecast", fvh.getAdapterPosition());
                 fCtx.startActivity(intent);

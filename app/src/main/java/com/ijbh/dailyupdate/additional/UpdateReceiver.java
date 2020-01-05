@@ -77,7 +77,7 @@ public class UpdateReceiver extends BroadcastReceiver {
         Forecast forecast = ForecastViewModel.getForecast(0);
         forecastNotifRv.setTextViewText(R.id.forecast_title_notif, context.getResources().getString(R.string.expected_temp) + forecast.getAvgTemp() + "° C");
         forecastNotifRv.setTextViewText(R.id.weather_notif_second_title, context.getResources().getString(R.string.latest_forecast));
-        forecastNotifRv.setImageViewResource(R.id.weather_img_notif, R.drawable.sun);
+        forecastNotifRv.setImageViewResource(R.id.weather_img_notif, R.drawable.snow);
 
         //remote view for articles notification
         RemoteViews articlesNotifRv = new RemoteViews(context.getPackageName(), R.layout.articles_notif_layout);
@@ -97,14 +97,14 @@ public class UpdateReceiver extends BroadcastReceiver {
 
         //builder for weather notification
         NotificationCompat.Builder forecastNotifBuilder = new NotificationCompat.Builder(context, CHANNEL_WEATHER_ID);
-        forecastNotifBuilder.setSmallIcon(R.drawable.ic_watch_later_black)
+        forecastNotifBuilder.setSmallIcon(R.mipmap.ic_dailyupdate_foreground)
                             .setContentIntent(forecastPendingIntent)
                             .setContent(forecastNotifRv)
                             .setAutoCancel(true);
 
         //builder for articles notification
         NotificationCompat.Builder articlesNotifBuilder = new NotificationCompat.Builder(context, CHANNEL_NEWS_ID);
-        articlesNotifBuilder.setSmallIcon(R.drawable.ic_watch_later_black)
+        articlesNotifBuilder.setSmallIcon(R.mipmap.ic_dailyupdate_foreground)
                             .setContentIntent(articlesPendingIntent)
                             .setContent(articlesNotifRv)
                             .setAutoCancel(true);
@@ -148,7 +148,7 @@ public class UpdateReceiver extends BroadcastReceiver {
 
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         int interval = Integer.parseInt(sp.getString("preferences_notification_interval", "10"));
-        Toast.makeText(context, "interval: " + interval, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "interval: " + interval, Toast.LENGTH_SHORT).show();
 
 
 
