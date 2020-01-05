@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
 
     private static final int SETTINGS_REQUEST = 99;
     private static final int DEFAULT_INTERVAL = 60;
-    private static final boolean DEFAULT_SEND = true;
+    private static final boolean DEFAULT_SEND_ALL = true;
+    private static final boolean DEFAULT_SEND_NEWS = true;
+    private static final boolean DEFAULT_SEND_WEATHER = true;
     final String NEWS_FRAGMENT_TAG = "news_fragment";
     final String WEATHER_FRAGMENT_TAG = "weather_fragment";
     final String CHANNEL_NEWS_ID = "news_channel";
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
 
     NotificationManager manager;
     AlarmManager alarmManager;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,23 +58,32 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
 
         createNotificationChannels();
         int interval = DEFAULT_INTERVAL;
-        boolean sendNotification = DEFAULT_SEND;
+        boolean sendAllNotifications = DEFAULT_SEND_ALL;
+        boolean sendNewsNotifications = DEFAULT_SEND_NEWS;
+        boolean sendWeatherNotification = DEFAULT_SEND_WEATHER;
         try{
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+            sp = PreferenceManager.getDefaultSharedPreferences(this);
+
             interval = Integer.parseInt(sp.getString("preferences_notification_interval", String.valueOf(DEFAULT_INTERVAL)));
             Toast.makeText(this, "interval: " + interval, Toast.LENGTH_SHORT).show();
-            sendNotification = sp.getBoolean("preference_notifications", DEFAULT_SEND);
+            sendAllNotifications = sp.getBoolean("preference_all_notifications", DEFAULT_SEND_ALL);
+            sendNewsNotifications = sp.getBoolean("preference_news_notifications", DEFAULT_SEND_NEWS);
+            sendWeatherNotification = sp.getBoolean("preference_weather_notifications", DEFAULT_SEND_WEATHER);
+
 
         }catch (NullPointerException npe){
             Toast.makeText(this, "no sp - interval: " + interval, Toast.LENGTH_SHORT).show();
 
         }
         finally {
-            Log.d("NOTIFICATIONS", "notif: "+ sendNotification);
+            Log.d("NOTIFICATIONS", "all notif: "+ sendAllNotifications);
 
-            if(sendNotification)
-                startNotifications(interval);
-            else{}
+            if(sendAllNotifications)
+                startNotifications(interval, "all");
+            else if(sendNewsNotifications)
+                startNotifications(interval, "news");
+            else if(sendWeatherNotification)
+                startNotifications(interval, "weather");
                 //cancelNotifications();
         }
 
@@ -115,22 +127,27 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == SETTINGS_REQUEST){
 
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+            sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             int interval = Integer.parseInt(sp.getString("preferences_notification_interval", String.valueOf(DEFAULT_INTERVAL)));
             Toast.makeText(this, "interval updated: " + interval, Toast.LENGTH_SHORT).show();
 
-            boolean sendNotification = sp.getBoolean("preference_notifications", DEFAULT_SEND);
-            Log.d("NOTIFICATIONS", "notif updated: "+ sendNotification);
+            boolean sendAllNotifications = sp.getBoolean("preference_all_notifications", DEFAULT_SEND_ALL);
+            boolean sendNewsNotifications = sp.getBoolean("preference_news_notifications", DEFAULT_SEND_NEWS);
+            boolean sendWeatherNotification = sp.getBoolean("preference_weather_notifications", DEFAULT_SEND_WEATHER);
 
-            if(sendNotification)
-                startNotifications(interval);
+            if(sendAllNotifications)
+                startNotifications(interval, "all");
+            else if(sendNewsNotifications)
+                startNotifications(interval, "news");
+            else if(sendWeatherNotification)
+                startNotifications(interval, "weather");
             else
                 cancelNotifications();
         }
     }
 
-    private void startNotifications(int interval) {
+    private void startNotifications(int interval, String type) {
 
         //alarm manager
 
@@ -138,7 +155,9 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.SECOND, interval);
 
+        //sp.edit().putString("type", type).commit();
         Intent intent = new Intent(MainActivity.this, UpdateReceiver.class);
+        intent.putExtra("type", type);
         PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);

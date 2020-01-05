@@ -2,42 +2,39 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="General Preferences"
+        android:title="Notifications"
         >
-        <PreferenceScreen
-            android:title="Notifications"
-            android:icon="@mipmap/ic_launcher"
-            >
-            <CheckBoxPreference
-                android:key="preference_notifications"
-                android:title="Receive notifications"
-                android:defaultValue="true"
-                />
-
-            <ListPreference
-                android:key="preferences_notification_interval"
-                android:title="Notification Interval"
-                android:entryValues="@array/interval_list_values"
-                android:entries="@array/interval_list_txt"
-                android:defaultValue="60"
-                />
-        </PreferenceScreen>
-
-        <PreferenceScreen
-            android:title="News"
-            android:icon="@mipmap/ic_launcher_round"
-            >
-
-        </PreferenceScreen>
-
-        <PreferenceScreen
-            android:title="Weather"
-            android:icon="@mipmap/ic_launcher_round"
-            >
-
-        </PreferenceScreen>
+        <CheckBoxPreference
+            android:key="preference_all_notifications"
+            android:title="Receive all notifications"
+            android:defaultValue="true"
+            android:onClick="allNotif"
+            />
+        <CheckBoxPreference
+            android:key="preference_news_notifications"
+            android:title="Receive news notifications"
+            android:defaultValue="true"
+            android:onClick="newsNotif"
+            />
+        <CheckBoxPreference
+            android:key="preference_weather_notifications"
+            android:title="Receive weather notifications"
+            android:defaultValue="true"
+            android:onClick="weatherNotif"
+            />
 
 
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Frequency"
+        >
+        <ListPreference
+            android:key="preferences_notification_interval"
+            android:title="Notification Interval"
+            android:entryValues="@array/interval_list_values"
+            android:entries="@array/interval_list_txt"
+            android:defaultValue="60"
+            />
 
     </PreferenceCategory>
 

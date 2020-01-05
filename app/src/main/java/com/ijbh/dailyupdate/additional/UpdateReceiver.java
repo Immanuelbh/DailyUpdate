@@ -69,14 +69,17 @@ public class UpdateReceiver extends BroadcastReceiver {
         RemoteViews articleNotifRv= new RemoteViews(context.getPackageName(), R.layout.article_notif_layout_collapsed);
         articleNotifRv.setOnClickPendingIntent(R.id.article_notif_ll, articlePendingIntent);
         articleNotifRv.setTextViewText(R.id.article_title_notif, "New Article!");
-        articleNotifRv.setImageViewResource(R.id.article_img_iv_notif, R.drawable.ic_watch_later_black);
+        //articleNotifRv.setImageViewResource(R.id.article_img_iv_notif, R.drawable.ic_watch_later_black);
 
         //remote view for weather notification
         RemoteViews forecastNotifRv= new RemoteViews(context.getPackageName(), R.layout.weather_notif_layout);
         forecastNotifRv.setOnClickPendingIntent(R.id.weather_notif_ll, forecastPendingIntent);
-        articleNotifRv.setTextViewText(R.id.forecast_title_notif, "New Weather Update!");
+        forecastNotifRv.setTextViewText(R.id.forecast_title_notif, "New Weather Update!");
 
         //remote view for articles notification
+        RemoteViews articlesNotifRv = new RemoteViews(context.getPackageName(), R.layout.articles_notif_layout);
+        articlesNotifRv.setOnClickPendingIntent(R.id.articles_layout_notif_ll, articlesPendingIntent);
+        articlesNotifRv.setTextViewText(R.id.article_title_notif, "New Articles!");
 
 
         //builders
@@ -93,19 +96,47 @@ public class UpdateReceiver extends BroadcastReceiver {
         //builder for articles notification
         NotificationCompat.Builder articlesNotifBuilder = new NotificationCompat.Builder(context, CHANNEL_NEWS_ID);
         articlesNotifBuilder.setSmallIcon(R.drawable.ic_watch_later_black);
-        articlesNotifBuilder.setContentTitle("New Articles, Come Check Them Out!");
-        articlesNotifBuilder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
+        //articlesNotifBuilder.setContentTitle("New Articles, Come Check Them Out!");
+        //articlesNotifBuilder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
+        articlesNotifBuilder.setContent(articlesNotifRv);
         //articlesNotifBuilder.setContent(articlesNotifRv);
 
 
+        NotificationCompat.Builder[] notifications = null;// = new NotificationCompat.Builder[NOTIF_AMOUNT];
+
+        String notifType = intent.getStringExtra("type");
+
+        if(notifType == null){
+            cancelNotifications("all");
+        }
+        else{
+            Log.d("Notif Type:", notifType);
+            if(notifType.equals("all")){
+                notifications = new NotificationCompat.Builder[NOTIF_AMOUNT];
+                notifications[0] = articleNotifBuilder;
+                notifications[1] = forecastNotifBuilder;
+                notifications[2] = articlesNotifBuilder;
+            }
+            else if (notifType.equals("news")){
+                notifications = new NotificationCompat.Builder[NOTIF_AMOUNT-1];
+                notifications[0] = articleNotifBuilder;
+                notifications[1] = articlesNotifBuilder;
+            }
+            else if (notifType.equals("weather")){
+                notifications = new NotificationCompat.Builder[NOTIF_AMOUNT-2];
+                notifications[0] = forecastNotifBuilder;
+
+            }
+
+
+        }
+
         //notifies
-        NotificationCompat.Builder[] notifications = new NotificationCompat.Builder[NOTIF_AMOUNT];
-        notifications[0] = articleNotifBuilder;
-        notifications[1] = forecastNotifBuilder;
-        notifications[2] = articlesNotifBuilder;
+
 
         //manager.notify(NOTIF_NEW_WEATHER_ID, forecastNotifBuilder.build());
-        fireNotification(notifications);
+        if(notifications != null)
+            fireNotification(notifications);
 
         //manager.cancel(NOTIF_NEW_ARTICLE_ID);
 
@@ -114,9 +145,8 @@ public class UpdateReceiver extends BroadcastReceiver {
         Toast.makeText(context, "interval: " + interval, Toast.LENGTH_SHORT).show();
 
 
-        if(intent.getBooleanExtra("sendNotif", true) == false)
-            cancelNotifications();
-        else{
+
+        if(notifType != null){
 
             alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
@@ -124,6 +154,7 @@ public class UpdateReceiver extends BroadcastReceiver {
             calendar.add(Calendar.SECOND, interval);
 
             Intent updateIntent = new Intent(context, UpdateReceiver.class);
+            updateIntent.putExtra("type", notifType);
             PendingIntent broadcast = PendingIntent.getBroadcast(context, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
@@ -131,30 +162,68 @@ public class UpdateReceiver extends BroadcastReceiver {
 
     }
 
-    private void cancelNotifications() {
-        try {
-            manager.cancel(NOTIF_NEW_ARTICLE_ID);
-        }catch (NullPointerException npe1){}
-        try {
-            manager.cancel(NOTIF_NEW_WEATHER_ID);
-        }catch (NullPointerException npe1){}
-        try {
-            manager.cancel(NOTIF_LATEST_NEWS_ID);
-        }catch (NullPointerException npe1){}
+    private void cancelNotifications(String toCancel) {
+        if (toCancel.equals("all")){
+            try {
+                manager.cancel(NOTIF_NEW_ARTICLE_ID);
+            }catch (NullPointerException npe1){}
+            try {
+                manager.cancel(NOTIF_NEW_WEATHER_ID);
+            }catch (NullPointerException npe1){}
+            try {
+                manager.cancel(NOTIF_LATEST_NEWS_ID);
+            }catch (NullPointerException npe1){}
+        }
+        else if (toCancel.equals("news")){
+            try {
+                manager.cancel(NOTIF_NEW_ARTICLE_ID);
+            }catch (NullPointerException npe1){}
+            try {
+                manager.cancel(NOTIF_LATEST_NEWS_ID);
+            }catch (NullPointerException npe1){}
+        }
+        else if (toCancel.equals("weather")){
+            try {
+                manager.cancel(NOTIF_NEW_WEATHER_ID);
+            }catch (NullPointerException npe1){}
+        }
+
+
     }
 
     private void fireNotification(NotificationCompat.Builder[] notifications) {
 
         Random rand = new Random();
         int num = rand.nextInt(notifications.length);
+        int type = notifications.length;
+        Log.d("UpdateReceiver", "length: " + notifications.length);
         Log.d("UpdateReceiver", "Attempting to fire notification number: " + num);
-        switch (num){
-            case 0: manager.notify(NOTIF_NEW_ARTICLE_ID, notifications[num].build());
+
+        if(type == 3){
+            switch (num){
+                case 0: manager.notify(NOTIF_NEW_ARTICLE_ID, notifications[num].build());
                     break;
-            case 1: manager.notify(NOTIF_NEW_WEATHER_ID, notifications[num].build());
+                case 1: manager.notify(NOTIF_NEW_WEATHER_ID, notifications[num].build());
                     break;
-            case 2: manager.notify(NOTIF_LATEST_NEWS_ID, notifications[num].build());
+                case 2: manager.notify(NOTIF_LATEST_NEWS_ID, notifications[num].build());
                     break;
+
+            }
+
+        }
+        else if (type == 2){
+            cancelNotifications("weather");
+            switch (num){
+                case 0: manager.notify(NOTIF_NEW_ARTICLE_ID, notifications[num].build());
+                    break;
+                case 1: manager.notify(NOTIF_LATEST_NEWS_ID, notifications[num].build());
+                    break;
+
+            }
+        }
+        else if (type == 1){
+            cancelNotifications("news");
+            manager.notify(NOTIF_NEW_WEATHER_ID, notifications[num].build());
 
         }
 
