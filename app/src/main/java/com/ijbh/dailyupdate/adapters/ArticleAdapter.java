@@ -18,6 +18,7 @@ import com.ijbh.dailyupdate.R;
 import com.ijbh.dailyupdate.models.Article;
 import com.ijbh.dailyupdate.ui.ArticleActivity;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleViewHolder> {
@@ -39,7 +40,6 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         this.articles = articleList;
     }
 
-    //public ArticleAdapter(){}
 
     public ArticleAdapter(List<Article> articles){
         this.articles = articles;
@@ -66,21 +66,20 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
     @Override
     public ArticleViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(aCtx).inflate(R.layout.article_cell, parent, false);
-        //ArticleViewHolder articleViewHolder = new ArticleViewHolder(view);
 
         //working
         final ArticleViewHolder avh = new ArticleViewHolder(view);
         avh.articleLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(aCtx, "Article num: " + String.valueOf(avh.getAdapterPosition()), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(aCtx, "Article num: " + String.valueOf(avh.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(parent.getContext(), ArticleActivity.class);
                 intent.putExtra("current_article", avh.getAdapterPosition());
                 aCtx.startActivity(intent);
             }
         });
 
-        return avh;//new ArticleViewHolder(view);
+        return avh;
     }
 
     @Override
@@ -88,17 +87,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
         Article article = articles.get(position);
         holder.titleTv.setText(article.getTitle());
         holder.descTv.setText(article.getDesc());
-        //TODO add glide for article image
-        if(article.getImageUrl() == null){
-            Glide.with(aCtx)
-                    .load(R.drawable.no_image_available_comp)
-                    .into(holder.imageIv);
-        }
-        else{
-            Glide.with(aCtx)
-                    .load(article.getImageUrl()+"")
-                    .into(holder.imageIv);
-        }
+        Glide.with(aCtx)
+                .load(article.getImageUrl()+"")
+                .error(R.drawable.no_image_available_comp)
+                .into(holder.imageIv);
+
 
     }
 

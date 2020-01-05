@@ -3,7 +3,6 @@ package com.ijbh.dailyupdate.ui;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlarmManager;
@@ -65,14 +64,14 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             interval = Integer.parseInt(sp.getString("preferences_notification_interval", String.valueOf(DEFAULT_INTERVAL)));
-            Toast.makeText(this, "interval: " + interval, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "interval: " + interval, Toast.LENGTH_SHORT).show();
             sendAllNotifications = sp.getBoolean("preference_all_notifications", DEFAULT_SEND_ALL);
             sendNewsNotifications = sp.getBoolean("preference_news_notifications", DEFAULT_SEND_NEWS);
             sendWeatherNotification = sp.getBoolean("preference_weather_notifications", DEFAULT_SEND_WEATHER);
 
 
         }catch (NullPointerException npe){
-            Toast.makeText(this, "no sp - interval: " + interval, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "no sp - interval: " + interval, Toast.LENGTH_SHORT).show();
 
         }
         finally {
@@ -103,9 +102,6 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
         intent.putExtra("sendNotif", false);
         PendingIntent broadcast = PendingIntent.getBroadcast(MainActivity.this, 100, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, 0, broadcast);
-        //manager.cancel(NOTIF_NEW_ARTICLE_ID);
-        //manager.cancel(NOTIF_NEW_WEATHER_ID);
-        //manager.cancel(NOTIF_LATEST_NEWS_ID);
     }
 
     @Override
@@ -130,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
             sp = PreferenceManager.getDefaultSharedPreferences(this);
 
             int interval = Integer.parseInt(sp.getString("preferences_notification_interval", String.valueOf(DEFAULT_INTERVAL)));
-            Toast.makeText(this, "interval updated: " + interval, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "interval updated: " + interval, Toast.LENGTH_SHORT).show();
 
             boolean sendAllNotifications = sp.getBoolean("preference_all_notifications", DEFAULT_SEND_ALL);
             boolean sendNewsNotifications = sp.getBoolean("preference_news_notifications", DEFAULT_SEND_NEWS);
@@ -150,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements NewsFragment.OnNe
     private void startNotifications(int interval, String type) {
 
         //alarm manager
-
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.SECOND, interval);

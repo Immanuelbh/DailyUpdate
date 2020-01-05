@@ -65,7 +65,6 @@ public class NewsFragment extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
 
-
         ArticleViewModel model = ViewModelProviders.of(this).get(ArticleViewModel.class);
 
         model.getArticleList().observe(this, new Observer<List<Article>>() {
@@ -78,7 +77,7 @@ public class NewsFragment extends Fragment {
                     @Override
                     public void onArticleClicked(int position, View view) {
 
-                        Toast.makeText(getContext(), "Article " + position, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Article " + position, Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(getContext(), ArticleActivity.class);
                         intent.putExtra("current_article", position);
@@ -93,25 +92,6 @@ public class NewsFragment extends Fragment {
                     Log.e("err","articles list is empty");
             }
         });
-
-        /*
-        List<Article> articlesList = new ArrayList<>();
-        articlesList.add(new Article("Hello World!", "This is the first cell to be created in this project!"));
-        articlesList.add(new Article("Second Test", "Second attempt at creating a cell inside a fragment."));
-
-        ArticleAdapter articleAdapter = new ArticleAdapter();
-
-        articleAdapter.setListener(new ArticleAdapter.ArticleListener() {
-            @Override
-            public void onArticleClicked(int position) {
-                Intent intent = new Intent(getContext(), ArticleActivity.class);
-                intent.putExtra("current_article", position);
-                startActivity(intent);
-            }
-        });
-
-        recyclerView.setAdapter(articleAdapter);
-*/
 
         return rootView;
     }

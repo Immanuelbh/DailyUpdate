@@ -5,9 +5,6 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.util.Log;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">דיילי אפדייט</string>
+    <string name="read_more">לכתבה המלאה:</string>
+    <string name="avg">ממוצע</string>
+    <string name="temperature">טמפרטורה</string>
+    <string name="max_temp">מקסימום מעלות</string>
+    <string name="min_temp">מינימום מעלות</string>
+    <string name="wind">רוח</string>
+    <string name="wind_dir">כיוון</string>
+    <string name="wind_spd">מהירות</string>
+    <string name="rain">גשם</string>
+    <string name="pop">סיכוי לגשם</string>
+    <string name="percip">משקעים</string>
+    <string name="notifications">התראות</string>
+    <string name="all_notif">קבל את כל ההתראות</string>
+    <string name="news_notif">קבל התראות מהחדשות</string>
+    <string name="weather_notif">קבל התראות מזג אוויר</string>
+    <string name="frequency">תדירות</string>
+    <string name="interval_notif">זמן חזרה</string>
+    <string name="ten_sec">10 שניות **</string>
+    <string name="one_min">פעם בדקה</string>
+    <string name="one_hour">פעם בשעה</string>
+    <string name="once_day">פעם ביום</string>
+    <string name="expected_temp">"טמפרטורה צפויה להיום: "</string>
+    <string name="new_info">עדכונים חדשים מחכים לך!</string>
+    <string name="latest_forecast">לחצו לעדכון מזג האויר האחרון</string>
+    <string name="read_more_notif">לחצו כדי לקרוא עוד</string>
+</resources>

@@ -51,7 +51,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     public class ForecastViewHolder extends RecyclerView.ViewHolder{
         ImageView forecastIconIv;
         TextView forecastTitleTv;
-        //TextView forecastDegreeTv;
         TextView forecastMaxDegreeTv;
         TextView forecastMinDegreeTv;
         TextView forecastDayTv;
@@ -63,7 +62,6 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
             forecastIconIv = itemView.findViewById(R.id.forecast_icon_iv);
             forecastTitleTv = itemView.findViewById(R.id.forecast_title_tv);
-            //forecastDegreeTv = itemView.findViewById(R.id.forecast_degrees_tv);
             forecastMaxDegreeTv = itemView.findViewById(R.id.forecast_max_degrees_tv);
             forecastMinDegreeTv = itemView.findViewById(R.id.forecast_min_degrees_tv);
             forecastDayTv = itemView.findViewById(R.id.day_of_the_week_tv);

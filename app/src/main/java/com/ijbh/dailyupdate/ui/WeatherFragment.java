@@ -119,7 +119,6 @@ public class WeatherFragment extends Fragment {
                 lon = location.getLongitude();
                 Log.d(TAG, "lat = " + lat + " | lon = " + lon);
 
-
                 updateWeatherList(lat, lon);
 
             }

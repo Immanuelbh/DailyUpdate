@@ -5,8 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ijbh.dailyupdate.additional.CurrentLocationListener;
-import com.ijbh.dailyupdate.models.Article;
 import com.ijbh.dailyupdate.models.Forecast;
 import com.ijbh.dailyupdate.network.Api;
 import com.ijbh.dailyupdate.network.ApiUtil;

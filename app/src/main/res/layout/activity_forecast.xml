@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="day of the week"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:gravity="center"
         />
 
@@ -41,6 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_launcher"
+                android:layout_gravity="center"
                 />
             <TextView
                 android:id="@+id/forecast_desc_tv"
@@ -48,6 +49,8 @@
                 android:layout_height="wrap_content"
                 android:text="a lil' rainy"
                 android:textSize="10sp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 />
         </LinearLayout>
         <LinearLayout
@@ -55,20 +58,21 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_weight="1"
-
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
             >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AVG"
-                android:textSize="10sp"
+                android:text="@string/avg"
+                android:textSize="12sp"
                 />
             <TextView
                 android:id="@+id/forecast_avg_temp_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="33° C"
-                android:textSize="16sp"
+                android:textSize="30sp"
                 />
 
         </LinearLayout>
@@ -79,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="temperature"
+        android:text="@string/temperature"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -91,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="max"
+            android:text="@string/max_temp"
             />
 
         <TextView
@@ -115,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="min"
+            android:text="@string/min_temp"
             />
 
         <TextView
@@ -134,7 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="wind"
+        android:text="@string/wind"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -146,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="direction"
+            android:text="@string/wind_dir"
             />
 
         <TextView
@@ -170,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="speed"
+            android:text="@string/wind_spd"
             />
 
         <TextView
@@ -189,7 +193,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="12sp"
-        android:text="rain"
+        android:text="@string/rain"
         />
     <LinearLayout
         android:layout_width="match_parent"
@@ -201,7 +205,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="probability of precipitation"
+            android:text="@string/pop"
             />
 
         <TextView
@@ -225,7 +229,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="12sp"
-            android:text="precipitation"
+            android:text="@string/percip"
             />
 
         <TextView

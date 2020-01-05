@@ -45,7 +45,6 @@ public class ApiUtil {
         }
 
 
-
         Api api = retrofit.create(Api.class);
 
         return api;

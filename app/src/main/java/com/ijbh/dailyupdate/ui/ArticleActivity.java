@@ -1,17 +1,8 @@
 package com.ijbh.dailyupdate.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +11,8 @@ import com.bumptech.glide.Glide;
 import com.ijbh.dailyupdate.R;
 import com.ijbh.dailyupdate.models.Article;
 import com.ijbh.dailyupdate.viewmodel.ArticleViewModel;
+
+import java.util.Locale;
 
 
 public class ArticleActivity extends Activity {
@@ -52,15 +45,27 @@ public class ArticleActivity extends Activity {
             Glide.with(this).load(article.getImageUrl()).into(articleImgIv);
             articleTitleTv.setText(article.getTitle());
             articleAuthorTv.setText(article.getAuthor());
-            articleDateTv.setText(article.getPublished());
             articleSourceTv.setText(article.getSource());
-            articleContentTv.setText(article.getContent());
+
+            articleDateTv.setText(article.getPublished());
+
+            String lang = Locale.getDefault().getCountry();
+            if(lang.equals("us")){
+                articleContentTv.setText(article.getContent());
+
+            }
+            else{
+                articleContentTv.setText(article.getDesc());
+
+            }
 
 
         }
         else{
             Toast.makeText(this, "The article is null", Toast.LENGTH_SHORT).show();
         }
+
+
 
     }
 

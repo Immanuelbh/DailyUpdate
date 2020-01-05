@@ -13,9 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.ForecastActivity"></activity>
-        <activity android:name=".ui.ArticleActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.ForecastActivity"
+            android:launchMode="singleInstance"></activity>
+        <activity android:name=".ui.ArticleActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".ui.MainActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

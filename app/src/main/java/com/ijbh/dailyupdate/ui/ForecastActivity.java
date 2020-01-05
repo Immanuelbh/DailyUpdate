@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,8 @@ import com.bumptech.glide.Glide;
 import com.ijbh.dailyupdate.R;
 import com.ijbh.dailyupdate.models.Forecast;
 import com.ijbh.dailyupdate.viewmodel.ForecastViewModel;
+
+import java.util.Locale;
 
 public class ForecastActivity extends Activity {
 
@@ -56,6 +59,10 @@ public class ForecastActivity extends Activity {
         forecast = ForecastViewModel.getForecast(getIntent().getIntExtra("current_forecast", 0));
 
         if (forecast != null) {
+
+            String lang = Locale.getDefault().getCountry();
+
+
             Log.d("Weather ICON", IMG_ICON_URL + forecast.getForecastIcon() + ".png");
             Glide.with(this)
                     .load(IMG_ICON_URL + forecast.getForecastIcon() + ".png")
@@ -63,7 +70,6 @@ public class ForecastActivity extends Activity {
                     .into(forecastImgIv);
             forecastCityTv.setText(forecast.getForecastCity() + ", " + forecast.getCountryCode());
             forecastDateTv.setText(forecast.getDayOfTheWeek());
-            forecastDescTv.setText(forecast.getWeatherDesc());
             forecastAvgTempTv.setText(forecast.getAvgTemp() + "° C");
             forecastMaxTempTv.setText(forecast.getForecastMaxDegrees() + "°");
             forecastMinTempTv.setText(forecast.getForecastMinDegrees()+ "°");
@@ -71,6 +77,12 @@ public class ForecastActivity extends Activity {
             forecastWndSpdTv.setText(forecast.getWindSpeed() + "m/s");
             forecastPopTv.setText(forecast.getPropOfPrecip() + "%");
             forecastPrecipTv.setText(forecast.getPrecip() + "mm");
+
+            if(lang.equals("us"))
+                forecastDescTv.setText(forecast.getWeatherDesc());
+            else{
+                forecastDescTv.setVisibility(View.GONE);
+            }
         }
         else{
             Toast.makeText(this, "The article is null", Toast.LENGTH_SHORT).show();

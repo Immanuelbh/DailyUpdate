@@ -30,7 +30,6 @@ public class ForecastsJsonDeserializer implements JsonDeserializer {
             for (int i = 0; i < forecastsJsonArray.size(); i++) {
                 JsonObject forecastObject = forecastsJsonArray.get(i).getAsJsonObject();
                 JsonObject weatherObject = forecastObject.get("weather").getAsJsonObject();
-                //TODO get weather icon from JSON
                 Forecast dematerialized = context.deserialize(forecastObject, Forecast.class);
                 forecasts.add(dematerialized);
                 forecasts.get(i).setForecastTitle(city);

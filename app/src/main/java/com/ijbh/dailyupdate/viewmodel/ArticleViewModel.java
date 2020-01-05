@@ -14,6 +14,7 @@ import com.ijbh.dailyupdate.network.ApiUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,14 +36,14 @@ public class ArticleViewModel extends ViewModel {
     private void loadArticles() {
         Api api = ApiUtil.getRetrofitApi("news");
 
-        Call<ArrayList<Article>> call = api.getArticles("us","d0aa26443881471ab9a2f2f49298fc28");
+        String lang = Locale.getDefault().getCountry();
+        Call<ArrayList<Article>> call = api.getArticles(lang,"d0aa26443881471ab9a2f2f49298fc28");
         Log.d(TAG, "onResponse: ConfigurationListener::"+call.request().url());
 
         call.enqueue(new Callback<ArrayList<Article>>() {
             @Override
             public void onResponse(Call<ArrayList<Article>> call, Response<ArrayList<Article>> response) {
                 articleList.setValue(response.body());
-                //saveArticle(response.body().get(0));
             }
 
             @Override
@@ -63,14 +64,4 @@ public class ArticleViewModel extends ViewModel {
         }
     }
 
-    private void saveArticle(Article article) {
-        //TODO: save the latest article and load it in the notification
-        /*
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(getString(R.string.saved_high_score_key), newHighScore);
-        editor.commit();
-
-         */
-    }
 }

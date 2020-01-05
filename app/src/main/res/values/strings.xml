@@ -2,10 +2,10 @@
     <string name="app_name">DailyUpdate</string>
 
     <string-array name="interval_list_txt">
-        <item>10 seconds**</item>
-        <item>Once a minute*</item>
-        <item>Once an hour</item>
-        <item>Once a day</item>
+        <item>@string/ten_sec</item>
+        <item>@string/one_min</item>
+        <item>@string/one_hour</item>
+        <item>@string/once_day</item>
     </string-array>
 
     <string-array name="interval_list_values">
@@ -14,4 +14,29 @@
         <item>3600</item>
         <item>86400</item>
     </string-array>
+    <string name="read_more">Read more at:</string>
+    <string name="avg">AVG</string>
+    <string name="temperature">Temperature</string>
+    <string name="max_temp">Maximum Expected Temperature</string>
+    <string name="min_temp">Minimum Expected Temperature</string>
+    <string name="wind">Wind</string>
+    <string name="wind_dir">Direction</string>
+    <string name="wind_spd">Speed</string>
+    <string name="rain">Rain</string>
+    <string name="pop">Probability of Precipitation</string>
+    <string name="percip">Precipitation</string>
+    <string name="notifications">Notifications</string>
+    <string name="all_notif">Receive all notifications</string>
+    <string name="news_notif">Receive news notifications</string>
+    <string name="weather_notif">Receive weather notifications</string>
+    <string name="frequency">Frequency</string>
+    <string name="interval_notif">Notification Interval</string>
+    <string name="ten_sec">10 Seconds **</string>
+    <string name="one_min">Once a minute*</string>
+    <string name="one_hour">Once an hour</string>
+    <string name="once_day">Once a day</string>
+    <string name="expected_temp">Expected temperature for today:</string>
+    <string name="new_info">New updates are waiting for you!</string>
+    <string name="latest_forecast">Tap to view the latest forecast</string>
+    <string name="read_more_notif">Tap to read more</string>
 </resources>
